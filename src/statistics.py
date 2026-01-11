@@ -101,7 +101,7 @@ def calculate_tradability_metrics(price_data, stock_a, stock_b):
         # print(f"DEBUG: Failed on {stock_a}-{stock_b}: {e}")
         return None
 
-#section 2 --> unsupervised learning
+#section 2 --> unsupervised learning used in 01_pair_search
 
 def get_clusters(returns_df, n_components=5, eps=0.25):
     #perform PCA to extract latent factors
@@ -135,9 +135,9 @@ def get_clusters(returns_df, n_components=5, eps=0.25):
 
 
 def find_cointegrated_pairs(price_data, clusters_df):
-    """
-    Step 3: The Engle-Granger Test (RELAXED VERSION)
-    """
+    
+    # Step 3: The Engle-Granger Test (RELAXED VERSION)
+    
     pairs = []
     unique_clusters = clusters_df['Cluster'].unique()
     
@@ -184,5 +184,3 @@ def find_cointegrated_pairs(price_data, clusters_df):
                     continue
                     
     return pd.DataFrame(pairs)
-
-
